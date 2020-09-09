@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Transform } from 'src/animation/transform';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,9 @@ export class AppComponent implements OnInit{
 
   isOpen: string;
 
-  width = 300;
+  width = 10;
+
+  constructor(private sanitizer: DomSanitizer) {}
 
 
   ngOnInit() {
@@ -24,4 +27,21 @@ export class AppComponent implements OnInit{
   click() {
     this.isOpen = "close";
   }
+
+//   @Component({ /*…*/ })
+// export class MyComponent {
+
+//   @HostBinding("attr.style")
+//   public get valueAsStyle(): any {
+//     return this.sanitizer.bypassSecurityTrustStyle(`--some-var: ${value}`);
+//   }
+
+//   constructor(private sanitizer: DomSanitizer) {}
+
+// }
+// ----------------------------------------
+// <div [style]="color">...</div>
+// color = this.sanitizer.bypassSecurityTrustStyle('--someKey: ' + someVariable);
+// ---------------------------------------------
+// @HostBind('style.--custom-proproty')
 }
